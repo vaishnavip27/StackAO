@@ -1,12 +1,46 @@
-import React, { useState } from "react";
-import { BiUpvote, BiComment } from "react-icons/bi";
+import React, { useState, useEffect } from "react";
+import { BiUpvote } from "react-icons/bi";
+import { BiComment } from "react-icons/bi";
+import {
+  createDataItemSigner,
+  message as AOMessage,
+  result,
+} from "@permaweb/aoconnect";
+import axios from "axios";
 
 export default function ContentPage() {
-  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const signer = await createDataItemSigner(window.arweaveWallet);
+
+        const msg = await AOMessage({
+          process: "sY6Yn2-zHdTtxwGhN0osNcecM3Gz1m_AtZwK-XjKpI0",
+          signer,
+          tags: [{ name: "Action", value: "Register" }], // Corrected line
+        });
+
+        const { Messages } = await result({
+          message: msg,
+          process: "sY6Yn2-zHdTtxwGhN0osNcecM3Gz1m_AtZwK-XjKpI0",
+        });
+
+        console.log(Messages); // Do something with the messages
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+
+    fetchMessages();
+  }, []); // Empty dependency array to run the effect only once
+
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [selectedQuestions, setSelectedQuestions] = useState([]); // State to keep track of selected questions
   const [showNotification, setShowNotification] = useState(false);
 
   const handleSolutionClick = (question) => {
-    setSelectedQuestions((prevQuestions) => [...prevQuestions, question]);
+    setSelectedQuestion(question);
+    setSelectedQuestions([...selectedQuestions, question]); // Add question to the array
     setShowNotification(true);
 
     // Automatically hide the notification after 3 seconds
@@ -51,15 +85,20 @@ export default function ContentPage() {
         />
       </div>
 
-      {/* Display selected questions somewhere in your UI */}
-      <div>
-        <h2>Selected Questions:</h2>
-        <ul>
-          {selectedQuestions.map((question, index) => (
-            <li key={index}>{question}</li>
-          ))}
-        </ul>
-      </div>
+      {/* Display selected questions */}
+      {selectedQuestions.length > 0 && (
+        <div>
+          <h3>Selected Questions:</h3>
+          <ul>
+            {selectedQuestions.map((question, index) => (
+              <li key={index}>{question}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Display selected question somewhere in your UI */}
+      {selectedQuestion && <p>Selected question: {selectedQuestion}</p>}
 
       {/* Notification */}
       {showNotification && <div className="notification">Question stored!</div>}

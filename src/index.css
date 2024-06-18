@@ -15,7 +15,7 @@ code {
 .nav-bar {
   height: 60px;
   width: 1540px;
-  border: 1px solid black;
+  background-color: white;
 }
 
 .nav-bar button {
@@ -34,7 +34,6 @@ code {
   height: 178px;
   width: 1050px;
   font-size: 62px;
-  border: 1px solid black;
   text-align: center;
   font-weight: 800;
   margin-top: 20vh;
