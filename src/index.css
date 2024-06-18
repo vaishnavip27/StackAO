@@ -60,7 +60,7 @@ button.join {
 }
 
 .container {
-  height: 800px;
+  height: 750px;
   width: 940px;
   background-color: black;
   margin-left: 300px;
@@ -69,8 +69,71 @@ button.join {
 .head {
   color: white;
   width: 850px;
-  border: 1px solid white;
   font-size: 36px;
   padding-top: 20px;
-  margin-left: 10px;
+  margin-left: 43px;
+}
+
+.ques {
+  height: 140px;
+  width: 850px;
+  margin-left: 43px;
+  background-color: rgb(27, 27, 27);
+  margin-top: 22px;
+}
+
+.q-name {
+  height: 60px;
+  width: 850px;
+  margin-top: 32px;
+  color: white;
+  font-size: 20px;
+}
+
+.answer,
+.sol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  width: 72px;
+  background-color: rgb(16, 16, 16);
+  gap: 14px;
+  border-radius: 25px;
+}
+
+.upvote,
+.solution {
+  height: 36px;
+  width: 36px;
+  background-color: black;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.upvote-count,
+.solution-count {
+  margin-left: 5px;
+  margin-top: 3px;
+  color: white;
+  margin-top: -2px;
+  margin-left: -1px;
+}
+
+.upvote-icon,
+.solution-icon {
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.upvote-icon:hover,
+.solution-icon:hover {
+  transform: translateY(-3px);
+}
+
+.icons {
+  display: flex;
+  align-items: left;
+  justify-content: content;
+  gap: 29px;
 }
