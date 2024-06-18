@@ -21,6 +21,7 @@ code {
 .nav-bar button {
   height: 50px;
   width: 170px;
+  top: 10px;
   margin-top: 25px;
   margin-left: 1210px;
   border-radius: 20px;
